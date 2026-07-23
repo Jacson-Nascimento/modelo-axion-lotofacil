@@ -1,0 +1,21 @@
+4.b64decode(PAYLOAD)).decode("utf-8"))
+    written = []
+    for relative_path, content in sorted(mapping.items()):
+        target = root / relative_path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(content, encoding="utf-8")
+        written.append(relative_path)
+    return written
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--root", default=".")
+    args = parser.parse_args()
+    root = Path(args.root).resolve()
+    written = materialize(root)
+    print(f"Materialized {len(written)} files")
+    for path in written:
+        print(path)
+
+if __name__ == "__main__":
+    main()
