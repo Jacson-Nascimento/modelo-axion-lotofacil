@@ -1,0 +1,1 @@
+O DOI específico da versão 1.0 será usado para citar os arquivos imutáveis desta edição. O DOI conceitual será usado para citar a série de forma geral e deverá apontar para a versão mais recente disponibilizada no Zenodo.
