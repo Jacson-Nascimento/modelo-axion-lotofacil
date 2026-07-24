@@ -1,0 +1,1 @@
+A GitHub Release `axion-relatorios-v1.0` deve permanecer em rascunho até que o repositório seja habilitado na integração GitHub–Zenodo. Depois da autorização, publicar o rascunho para gerar o registro versionado e os identificadores persistentes.
