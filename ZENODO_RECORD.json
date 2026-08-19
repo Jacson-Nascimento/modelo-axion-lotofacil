@@ -1,0 +1,21 @@
+{
+  "title": "Modelo Axion Lotofacil: pacote operacional de reprodutibilidade v1.2",
+  "creator": {
+    "name": "Jacson Cruz do Nascimento",
+    "orcid": "https://orcid.org/0009-0006-6535-9569"
+  },
+  "resource_type": "software",
+  "version": "1.2",
+  "publication_date": "2026-08-19",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.21522330",
+      "relation": "isVersionOf",
+      "scheme": "doi"
+    }
+  ],
+  "license": "CC BY 4.0",
+  "repository_code": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/tree/main/lotofacil_axion",
+  "status": "development-package",
+  "description": "Pacote operacional para reprodutibilidade do Modelo Axion Lotofacil v1.2, com importacao de dados, metricas historicas, filtros combinatorios, espaco residual, score multicriterio, selecao final e simulacao Monte Carlo."
+}
