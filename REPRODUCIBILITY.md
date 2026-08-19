@@ -23,6 +23,28 @@ A entrada deve ser uma planilha historica da Lotofacil com:
 
 O arquivo pode estar em `data/raw/` ou em outro caminho indicado no objeto `config` do script R.
 
+## Fonte recomendada da base historica
+
+A fonte primaria recomendada e o Portal Loterias CAIXA:
+
+```text
+https://loterias.caixa.gov.br/Paginas/Lotofacil.aspx
+```
+
+O pacote inclui o script:
+
+```text
+scripts/download_resultados_caixa.R
+```
+
+Esse script baixa a base historica pelo endpoint:
+
+```text
+https://servicebus2.caixa.gov.br/portaldeloterias/api/resultados/download?modalidade=Lotof%C3%A1cil
+```
+
+No GitHub Actions, o workflow `lotofacil-v12-reproducibility.yml` executa automaticamente esse download quando nenhuma base compativel estiver presente em `data/raw/`.
+
 ## Ambiente
 
 Versao recomendada:
@@ -47,12 +69,18 @@ n_sim = 1000
 
 Alteracoes nesses parametros devem ser documentadas no relatorio de execucao.
 
-## Comando de execucao
+## Comando de execucao local
 
 No diretorio `lotofacil_axion`, executar:
 
 ```bash
 Rscript run_all.R
+```
+
+Se a base ainda nao estiver em `data/raw/`, executar antes:
+
+```bash
+Rscript scripts/download_resultados_caixa.R
 ```
 
 ## Fluxo computacional
