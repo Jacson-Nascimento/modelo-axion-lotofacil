@@ -15,7 +15,7 @@ Nome recomendado para a base baixada:
 lotofacil_historico.xlsx
 ```
 
-O workflow `lotofacil-v12-reproducibility.yml` baixa automaticamente o arquivo acima quando nenhuma base compativel estiver presente nesta pasta.
+A rotina Python `python/run_all.py` baixa automaticamente o arquivo acima quando nenhuma base compativel estiver presente nesta pasta. O workflow `lotofacil-v12-reproducibility.yml` usa essa rotina.
 
 ## Regra de preservacao
 
