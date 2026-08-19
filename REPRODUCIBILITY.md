@@ -37,6 +37,19 @@ A rotina principal em Python usa o endpoint:
 https://servicebus2.caixa.gov.br/portaldeloterias/api/resultados/download?modalidade=Lotof%C3%A1cil
 ```
 
+## Decisao arquivistica v1.2
+
+A v1.2 adota pacote arquivistico leve. O pacote final deve preservar:
+
+- `data/processed/lotofacil_historico_normalizado.csv`;
+- `data/raw/SOURCE_CAIXA.md`;
+- `checksums/CHECKSUMS.sha256`, incluindo o hash da planilha bruta baixada;
+- `outputs/`;
+- `figures/`;
+- metadados, protocolo e registro de evidencias.
+
+A planilha bruta `data/raw/lotofacil_historico.xlsx` nao precisa compor o artefato final, desde que a fonte, a data da execucao e o hash SHA-256 estejam preservados.
+
 ## Ambiente principal
 
 A execucao operacional no GitHub Actions usa Python.
