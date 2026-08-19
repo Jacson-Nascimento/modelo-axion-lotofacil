@@ -21,7 +21,25 @@ A fonte primaria recomendada e o Portal Loterias CAIXA:
 https://loterias.caixa.gov.br/Paginas/Lotofacil.aspx
 ```
 
-O pacote inclui o script `scripts/download_resultados_caixa.R`, que baixa a base historica pelo endpoint oficial de resultados da CAIXA quando a base nao estiver presente em `data/raw/`.
+A rotina Python baixa a base historica pelo endpoint oficial de resultados da CAIXA quando a base nao estiver presente em `data/raw/`.
+
+## Execucao principal em Python
+
+A execucao operacional no GitHub Actions usa Python.
+
+No diretorio `lotofacil_axion`, executar:
+
+```bash
+python python/run_all.py
+```
+
+Dependencias:
+
+```bash
+pip install -r environment/python-requirements.txt
+```
+
+A versao R permanece preservada no repositorio como referencia metodologica e historica, mas fica desligada na execucao automatizada do GitHub Actions.
 
 ## Estrutura operacional
 
@@ -33,10 +51,13 @@ lotofacil_axion/
 ├── LICENSE_NOTICE.md
 ├── ZENODO_RECORD.json
 ├── EVIDENCE_REGISTER.md
-├── run_all.R
 ├── environment/
 │   ├── README.md
-│   └── R-packages.txt
+│   ├── R-packages.txt
+│   └── python-requirements.txt
+├── python/
+│   ├── README.md
+│   └── run_all.py
 ├── scripts/
 │   └── download_resultados_caixa.R
 ├── R/
@@ -62,20 +83,9 @@ lotofacil_axion/
     └── CHECKSUMS_TEMPLATE.sha256
 ```
 
-## Execucao local
-
-No diretorio `lotofacil_axion`, executar:
-
-```bash
-Rscript scripts/download_resultados_caixa.R
-Rscript run_all.R
-```
-
-Se uma base historica ja estiver em `data/raw/`, o primeiro comando pode ser dispensado.
-
 ## Execucao no GitHub Actions
 
-O workflow manual `.github/workflows/lotofacil-v12-reproducibility.yml` executa o fluxo reprodutivel. Se nao houver arquivo em `data/raw/`, o workflow baixa a base oficial da CAIXA antes de rodar o modelo.
+O workflow manual `.github/workflows/lotofacil-v12-reproducibility.yml` executa o fluxo em Python. O workflow `.github/workflows/lotofacil-v12-pr-validation.yml` valida a PR quando acionado pelo GitHub.
 
 ## Saidas esperadas
 
@@ -85,7 +95,16 @@ A execucao cria a pasta:
 saida_axion_lotofacil_v12
 ```
 
-Com arquivos CSV, PNG e TXT contendo:
+E espelha evidencias em:
+
+```text
+outputs/
+figures/
+checksums/
+data/processed/
+```
+
+Os artefatos incluem:
 
 - estatisticas historicas das dezenas;
 - diagnostico dos filtros;
@@ -94,7 +113,8 @@ Com arquivos CSV, PNG e TXT contendo:
 - metricas de cobertura;
 - simulacao Monte Carlo de referencia;
 - graficos de frequencia e score;
-- relatorio de execucao.
+- relatorio de execucao;
+- hashes SHA-256.
 
 ## Reprodutibilidade
 
