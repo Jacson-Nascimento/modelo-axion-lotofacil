@@ -7,12 +7,24 @@
 
 Este registro define as evidencias que devem ser atualizadas a cada rodada operacional do modelo.
 
+## Decisao arquivistica v1.2
+
+A versao v1.2 adota pacote arquivistico leve. O artefato final deve preservar:
+
+- a base historica normalizada validada;
+- o registro de fonte da CAIXA;
+- o hash SHA-256 da planilha bruta efetivamente baixada;
+- os outputs, graficos, relatorio de execucao e checksums.
+
+A planilha bruta `data/raw/lotofacil_historico.xlsx` nao precisa ser anexada ao artefato final, desde que sua fonte e seu hash estejam documentados.
+
 ## Evidencias de entrada
 
 | Evidencia | Arquivo esperado | Situacao |
 |---|---|---|
-| Base historica bruta | `data/raw/lotofacil_historico.xlsx` | Baixada pela rotina Python quando ausente |
-| Registro de fonte | `data/raw/SOURCE_CAIXA.md` | Gerado pela rotina Python |
+| Base historica bruta | `data/raw/lotofacil_historico.xlsx` | Baixada pela rotina Python quando ausente; nao arquivada no pacote leve |
+| Registro de fonte | `data/raw/SOURCE_CAIXA.md` | Gerado pela rotina Python e preservado no artefato |
+| Hash da base bruta | `checksums/CHECKSUMS.sha256` | Preservado no artefato |
 | Dicionario da base | `data/README.md` | Mantido neste pacote |
 | Parametros de execucao | `python/run_all.py` | Mantido neste pacote |
 | Pacotes do ambiente | `environment/python-requirements.txt` | Mantido neste pacote |
@@ -48,7 +60,7 @@ Este registro define as evidencias que devem ser atualizadas a cada rodada opera
 
 ## Estado operacional da PR
 
-A PR prepara o pipeline para execucao local e no GitHub Actions. As evidencias finais de saida, figuras e checksums devem ser incorporadas somente apos uma rodada validada com a base historica efetivamente baixada ou fornecida.
+A PR prepara o pipeline para execucao local e no GitHub Actions. As evidencias finais de saida, figuras e checksums devem ser preservadas a partir de rodada validada com a base historica baixada pela rotina operacional ou fornecida de modo documentado.
 
 ## Nota sobre implementacoes
 
