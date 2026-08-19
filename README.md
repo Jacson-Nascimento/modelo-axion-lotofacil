@@ -11,19 +11,17 @@ Este diretorio reune os artefatos tecnicos do **Modelo Axion Lotofacil**, um pro
 
 ## Escopo
 
-O projeto trabalha com resultados historicos da Lotofacil para auditar propriedades combinatorias e gerar carteiras de jogos com criterios rastreaveis. O modelo nao demonstra vantagem preditiva contra sorteio justo, nao constitui recomendacao financeira e nao oferece garantia de premiacao.
+O modelo nao demonstra vantagem preditiva contra sorteios regulares e nao constitui recomendacao financeira, garantia de premiacao ou instrucao de aposta. Sua contribuicao esta na estruturacao auditavel de filtros, metricas, simulacoes e criterios de selecao combinatoria.
 
-A contribuicao da versao v1.2 esta em transformar a serie documental anterior em um pacote operacional reprodutivel, com:
+## Fonte de dados
 
-- importacao e validacao da base historica;
-- calculo de frequencias, atrasos e metricas historicas;
-- geracao ponderada de combinacoes candidatas;
-- filtros combinatorios;
-- formacao do espaco residual;
-- score multicriterio;
-- selecao final com controle de redundancia;
-- simulacao Monte Carlo de referencia;
-- exportacao de evidencias em CSV, TXT e PNG.
+A fonte primaria recomendada e o Portal Loterias CAIXA:
+
+```text
+https://loterias.caixa.gov.br/Paginas/Lotofacil.aspx
+```
+
+O pacote inclui o script `scripts/download_resultados_caixa.R`, que baixa a base historica pelo endpoint oficial de resultados da CAIXA quando a base nao estiver presente em `data/raw/`.
 
 ## Estrutura operacional
 
@@ -36,6 +34,11 @@ lotofacil_axion/
 ├── ZENODO_RECORD.json
 ├── EVIDENCE_REGISTER.md
 ├── run_all.R
+├── environment/
+│   ├── README.md
+│   └── R-packages.txt
+├── scripts/
+│   └── download_resultados_caixa.R
 ├── R/
 │   ├── 00_config.R
 │   ├── 01_pacotes_utilitarios.R
@@ -46,47 +49,70 @@ lotofacil_axion/
 │   └── Framework_Axion_Lotofacil_v1_2_standalone.R
 ├── data/
 │   ├── README.md
-│   ├── raw/README.md
-│   └── processed/README.md
-├── outputs/README.md
-├── figures/README.md
-├── checksums/README.md
-└── environment/
+│   ├── raw/
+│   │   └── README.md
+│   └── processed/
+│       └── README.md
+├── outputs/
+│   └── README.md
+├── figures/
+│   └── README.md
+└── checksums/
     ├── README.md
-    └── R-packages.txt
+    └── CHECKSUMS_TEMPLATE.sha256
 ```
-
-## Fonte de dados
-
-A base historica deve conter uma linha por concurso e quinze colunas de dezenas sorteadas. A pagina oficial das Loterias CAIXA informa area de download de resultados da Lotofacil por ordem crescente. A base local usada em cada execucao deve ser registrada em `data/raw/` ou informada no objeto `config` do arquivo `R/00_config.R`.
 
 ## Execucao local
 
-No diretorio `lotofacil_axion`, execute:
+No diretorio `lotofacil_axion`, executar:
 
 ```bash
+Rscript scripts/download_resultados_caixa.R
 Rscript run_all.R
 ```
 
-O pipeline cria a pasta `saida_axion_lotofacil_v12` com os arquivos de evidencia.
+Se uma base historica ja estiver em `data/raw/`, o primeiro comando pode ser dispensado.
+
+## Execucao no GitHub Actions
+
+O workflow manual `.github/workflows/lotofacil-v12-reproducibility.yml` executa o fluxo reprodutivel. Se nao houver arquivo em `data/raw/`, o workflow baixa a base oficial da CAIXA antes de rodar o modelo.
 
 ## Saidas esperadas
 
-- `estatisticas_dezenas_v12.csv`
-- `diagnostico_filtros_v12.csv`
-- `top_residual_v12.csv`
-- `jogos_final_v12.csv`
-- `metricas_conjunto_final_v12.csv`
-- `simulacao_monte_carlo_v12.csv`
-- `resumo_simulacao_v12.csv`
-- `grafico_frequencia_dezenas_v12.png`
-- `grafico_score_residual_v12.png`
-- `relatorio_execucao_v12.txt`
+A execucao cria a pasta:
 
-## Registro e citacao
+```text
+saida_axion_lotofacil_v12
+```
 
-A serie documental v1.0 esta arquivada no Zenodo sob DOI `10.5281/zenodo.21522330`. A versao v1.2 deve ser tratada como pacote operacional de reprodutibilidade ate que seja publicada como nova versao no Zenodo.
+Com arquivos CSV, PNG e TXT contendo:
 
-## Nota metodologica
+- estatisticas historicas das dezenas;
+- diagnostico dos filtros;
+- espaco residual ranqueado;
+- jogos finais selecionados;
+- metricas de cobertura;
+- simulacao Monte Carlo de referencia;
+- graficos de frequencia e score;
+- relatorio de execucao.
 
-Sorteios regulares sao eventos aleatorios. O objetivo do modelo e organizar criterios tecnicos de exploracao e selecao, nao prever o resultado de concursos futuros.
+## Reprodutibilidade
+
+O protocolo completo esta em `REPRODUCIBILITY.md`. Toda rodada operacional deve preservar:
+
+- base bruta usada;
+- parametros de execucao;
+- saidas geradas;
+- graficos;
+- relatorio de execucao;
+- hashes SHA-256.
+
+## Citacao
+
+Usar os metadados em `CITATION.cff`. Para a serie documental v1.0, utilizar o DOI:
+
+```text
+10.5281/zenodo.21522330
+```
+
+Novas alteracoes substantivas devem ser publicadas como nova versao no Zenodo apenas depois de uma rodada validada.
