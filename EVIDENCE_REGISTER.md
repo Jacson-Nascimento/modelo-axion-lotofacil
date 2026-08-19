@@ -1,49 +1,59 @@
-# Registro de Evidencias - Modelo Axion Lotofacil v1.2
+# Registro de evidencias - Modelo Axion Lotofacil v1.2
 
 **Autor:** Jacson Cruz do Nascimento  
 **Projeto:** Modelo Axion Lotofacil  
-**Versao:** v1.2  
-**Data:** 2026-08-19
+**Versao operacional:** 1.2  
+**Data-base documental:** 27 de abril de 2026
 
-Este registro define as evidencias que devem ser atualizadas a cada rodada operacional do modelo.
+Este registro define as evidencias minimas para classificar uma execucao do Modelo Axion Lotofacil v1.2 como auditavel e reprodutivel.
 
-## Evidencias de entrada
+## 1. Evidencias de entrada
 
 | Evidencia | Arquivo esperado | Situacao |
 |---|---|---|
-| Base historica bruta | `data/raw/` | Atualizar com a base usada na rodada |
-| Dicionario da base | `data/README.md` | Mantido neste pacote |
-| Parametros de execucao | Script R principal | Mantido neste pacote |
-| Pacotes do ambiente | `environment/R-packages.txt` | Mantido neste pacote |
+| Base historica bruta | `data/raw/lotofacil_historico.xlsx` | pendente de inclusao |
+| Descricao da base | `data/raw/README.md` | criado |
+| Lista de pacotes | `environment/R-packages.txt` | criado |
+| Configuracao do modelo | `R/00_config.R` | criado |
 
-## Evidencias de processamento
+## 2. Evidencias de processamento
 
-| Evidencia | Arquivo esperado | Finalidade |
+| Evidencia | Arquivo esperado | Situacao |
 |---|---|---|
-| Estatisticas das dezenas | `estatisticas_dezenas_v12.csv` | Frequencia, atraso e pesos |
-| Diagnostico dos filtros | `diagnostico_filtros_v12.csv` | Trilha de eliminacao |
-| Top residual | `top_residual_v12.csv` | Combinacoes ranqueadas |
-| Jogos finais | `jogos_final_v12.csv` | Carteira final selecionada |
-| Metricas do conjunto | `metricas_conjunto_final_v12.csv` | Cobertura e entropia do conjunto |
-| Simulacao Monte Carlo | `simulacao_monte_carlo_v12.csv` | Referencia aleatoria uniforme |
-| Resumo da simulacao | `resumo_simulacao_v12.csv` | Intervalos e estatisticas da simulacao |
+| Ponto unico de execucao | `run_all.R` | criado |
+| Importacao e validacao | `R/02_importacao_validacao.R` | criado |
+| Metricas historicas | `R/03_metricas_historicas.R` | criado |
+| Geracao de candidatos e residual | `R/04_candidatos_residual.R` | criado |
+| Selecao, simulacao e relatorio | `R/05_selecao_validacao_relatorio.R` | criado |
+| Script standalone de referencia | `R/Framework_Axion_Lotofacil_v1_2_standalone.R` | criado |
+| Workflow manual | `.github/workflows/lotofacil-v12-reproducibility.yml` | criado |
 
-## Evidencias visuais
+## 3. Evidencias de saida
 
-| Evidencia | Arquivo esperado |
-|---|---|
-| Frequencia das dezenas | `grafico_frequencia_dezenas_v12.png` |
-| Score do espaco residual | `grafico_score_residual_v12.png` |
+| Evidencia | Arquivo esperado | Situacao |
+|---|---|---|
+| Estatisticas das dezenas | `outputs/estatisticas_dezenas_v12.csv` | pendente de execucao |
+| Diagnostico dos filtros | `outputs/diagnostico_filtros_v12.csv` | pendente de execucao |
+| Espaco residual ranqueado | `outputs/top_residual_v12.csv` | pendente de execucao |
+| Jogos finais | `outputs/jogos_final_v12.csv` | pendente de execucao |
+| Metricas do conjunto final | `outputs/metricas_conjunto_final_v12.csv` | pendente de execucao |
+| Simulacao Monte Carlo | `outputs/simulacao_monte_carlo_v12.csv` | pendente de execucao |
+| Resumo da simulacao | `outputs/resumo_simulacao_v12.csv` | pendente de execucao |
+| Relatorio de execucao | `outputs/relatorio_execucao_v12.txt` | pendente de execucao |
+| Graficos | `figures/*.png` | pendente de execucao |
+| Checksums | `checksums/CHECKSUMS.sha256` | pendente apos execucao |
 
-## Evidencias de integridade
+## 4. Criterio de aceite
 
-| Evidencia | Arquivo esperado |
-|---|---|
-| Relatorio da execucao | `relatorio_execucao_v12.txt` |
-| Hashes de entrada e saida | `checksums/CHECKSUMS.sha256` |
-| Protocolo de reproducao | `REPRODUCIBILITY.md` |
-| Metadados de citacao | `CITATION.cff` |
+A versao operacional pode ser considerada pronta para release e deposito atualizado no Zenodo somente quando:
 
-## Regra de atualizacao
+1. a base historica oficial estiver identificada;
+2. `Rscript run_all.R` executar sem erro;
+3. todos os arquivos de saida forem gerados;
+4. os resultados principais forem descritos no relatorio de execucao;
+5. os checksums forem calculados;
+6. o README e o protocolo de reprodutibilidade forem revisados contra as evidencias finais.
 
-Toda alteracao substantiva em parametros, filtros, base historica, pesos ou criterio de score deve gerar nova rodada de saidas, novo relatorio de execucao e novos hashes.
+## 5. Observacao metodologica
+
+O projeto registra um metodo de exploracao estatistica e combinatoria. Ele nao constitui recomendacao financeira, garantia de premiacao ou demonstracao de vantagem preditiva contra sorteios regulares.
