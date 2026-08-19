@@ -17,7 +17,7 @@ sha256sum data/raw/* outputs/* figures/* > checksums/CHECKSUMS.sha256
 Exemplo em PowerShell:
 
 ```powershell
-Get-FileHash .\data\raw\* -Algorithm SHA256
-Get-FileHash .\outputs\* -Algorithm SHA256
-Get-FileHash .\figures\* -Algorithm SHA256
+Get-ChildItem .\data\raw\*, .\outputs\*, .\figures\* -File | Get-FileHash -Algorithm SHA256 | Format-Table Hash, Path
 ```
+
+Apos a execucao validada, salve a saida no arquivo `checksums/CHECKSUMS.sha256`.
