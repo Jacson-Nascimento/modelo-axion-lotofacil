@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Cite este projeto utilizando os dados abaixo."
+title: "Modelo Axion Lotofacil: pacote operacional de reprodutibilidade v1.2"
+type: software
+version: "1.2"
+date-released: 2026-08-19
+doi: "10.5281/zenodo.21522330"
+authors:
+  - family-names: "Nascimento"
+    given-names: "Jacson Cruz do"
+    orcid: "https://orcid.org/0009-0006-6535-9569"
+repository-code: "https://github.com/Jacson-Nascimento/Jacson-Nascimento/tree/main/lotofacil_axion"
+url: "https://doi.org/10.5281/zenodo.21522330"
+abstract: >-
+  Pacote operacional do Modelo Axion Lotofacil para exploracao combinatoria,
+  espaco residual, score multicriterio, selecao diversificada de combinacoes
+  e validacao por simulacao. O projeto nao constitui recomendacao financeira
+  nem garantia de premiacao.
+keywords:
+  - Lotofacil
+  - combinatoria
+  - espaco residual
+  - score multicriterio
+  - Monte Carlo
+  - reprodutibilidade
+  - auditoria analitica
+license: CC-BY-4.0
