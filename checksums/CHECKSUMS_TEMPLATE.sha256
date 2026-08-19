@@ -1,4 +1,3 @@
-# Template de checksums - Modelo Axion Lotofacil v1.2
-# Substituir este arquivo por CHECKSUMS.sha256 apos a execucao validada.
-# Formato recomendado: <sha256>  <arquivo>
-# Comando sugerido: sha256sum data/raw/* outputs/* figures/* > checksums/CHECKSUMS.sha256
+# Preencher apos execucao validada do pipeline Python.
+# Formato recomendado:
+# <sha256>  <arquivo>
