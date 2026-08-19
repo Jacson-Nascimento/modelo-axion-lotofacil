@@ -8,10 +8,22 @@
   "version": "1.2",
   "publication_date": "2026-08-19",
   "language": "por",
+  "doi": "10.5281/zenodo.21522638",
+  "doi_url": "https://doi.org/10.5281/zenodo.21522638",
+  "record_url": "https://zenodo.org/records/21522638",
+  "concept_doi": "10.5281/zenodo.21522329",
+  "concept_doi_url": "https://doi.org/10.5281/zenodo.21522329",
+  "record_id": "21522638",
+  "concept_record_id": "21522329",
   "related_identifiers": [
     {
       "identifier": "10.5281/zenodo.21522330",
       "relation": "isVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.21522638",
+      "relation": "isIdenticalTo",
       "scheme": "doi"
     },
     {
@@ -22,7 +34,9 @@
   ],
   "license": "CC BY 4.0",
   "repository_code": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/tree/agent/lotofacil-reprodutibilidade-v12/lotofacil_axion",
-  "status": "ready-for-zenodo-upload",
+  "status": "published",
+  "submitted": true,
+  "zenodo_state": "done",
   "archival_strategy": "lightweight-package",
   "archival_note": "Preserva base histórica normalizada, fonte CAIXA, hash SHA-256 da planilha bruta, outputs, figuras, relatório técnico e checksums. A planilha bruta baixada pela rotina operacional não é anexada ao pacote final.",
   "technical_report": "docs/reports/RELATORIO_TECNICO_REPRODUTIBILIDADE_v1_2.md",
@@ -35,6 +49,18 @@
     "artifact_id": "9372037884",
     "artifact_digest": "sha256:184e62b29f351ca184bfde5a57247235ae5947dc284431c6691526ee27e4348f"
   },
+  "published_files": [
+    {
+      "file": "Jacson-Nascimento/Jacson-Nascimento-axion-relatorios-v1.0.zip",
+      "size_bytes": 109413,
+      "zenodo_checksum": "904c8edd8a4aaa45193792eed51c4b15"
+    },
+    {
+      "file": "Zenodo_Modelo_Axion_Lotofacil_v1_2_pacote_leve.zip",
+      "size_bytes": 434416,
+      "zenodo_checksum": "c6df6aaead3db647a364dc1a969bac1b"
+    }
+  ],
   "file_inventory": [
     {
       "file": "Relatorio_Tecnico_Modelo_Axion_Lotofacil_v1_2.pdf",
