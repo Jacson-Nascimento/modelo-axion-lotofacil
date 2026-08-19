@@ -21,7 +21,7 @@ A entrada deve ser uma planilha historica da Lotofacil com:
 - dezenas entre 1 e 25;
 - exatamente quinze dezenas distintas por concurso.
 
-O arquivo pode estar em `data/raw/` ou em outro caminho indicado no objeto `config` do script R.
+A rotina Python baixa automaticamente a base historica oficial quando nao encontra arquivo compativel em `data/raw/`.
 
 ## Fonte recomendada da base historica
 
@@ -31,29 +31,31 @@ A fonte primaria recomendada e o Portal Loterias CAIXA:
 https://loterias.caixa.gov.br/Paginas/Lotofacil.aspx
 ```
 
-O pacote inclui o script:
-
-```text
-scripts/download_resultados_caixa.R
-```
-
-Esse script baixa a base historica pelo endpoint:
+A rotina principal em Python usa o endpoint:
 
 ```text
 https://servicebus2.caixa.gov.br/portaldeloterias/api/resultados/download?modalidade=Lotof%C3%A1cil
 ```
 
-No GitHub Actions, o workflow `lotofacil-v12-reproducibility.yml` executa automaticamente esse download quando nenhuma base compativel estiver presente em `data/raw/`.
+## Ambiente principal
 
-## Ambiente
+A execucao operacional no GitHub Actions usa Python.
 
 Versao recomendada:
 
-- R 4.3 ou superior;
-- pacotes listados em `environment/R-packages.txt`;
-- sistema operacional Windows, Linux ou macOS.
+- Python 3.11 ou superior;
+- pacotes listados em `environment/python-requirements.txt`;
+- sistema operacional Linux no GitHub Actions ou Windows, Linux e macOS em execucao local.
 
-Os pacotes nao sao instalados automaticamente por padrao. Para ativar instalacao automatica, altere `config$instalar_pacotes` para `TRUE`.
+Instalacao local:
+
+```bash
+pip install -r environment/python-requirements.txt
+```
+
+## Versao R
+
+Os scripts R permanecem preservados no repositorio como referencia metodologica e historica. A execucao automatizada do GitHub Actions fica em Python.
 
 ## Semente e parametros de controle
 
@@ -74,29 +76,40 @@ Alteracoes nesses parametros devem ser documentadas no relatorio de execucao.
 No diretorio `lotofacil_axion`, executar:
 
 ```bash
-Rscript run_all.R
+python python/run_all.py
 ```
 
-Se a base ainda nao estiver em `data/raw/`, executar antes:
+## Execucao no GitHub Actions
 
-```bash
-Rscript scripts/download_resultados_caixa.R
+Workflow manual:
+
+```text
+.github/workflows/lotofacil-v12-reproducibility.yml
 ```
+
+Workflow de PR:
+
+```text
+.github/workflows/lotofacil-v12-pr-validation.yml
+```
+
+Ambos usam Python como motor de execucao.
 
 ## Fluxo computacional
 
-1. Carregar configuracoes gerais.
-2. Carregar pacotes e funcoes utilitarias.
-3. Importar e validar a base historica.
-4. Calcular metricas historicas das dezenas.
-5. Definir filtros empiricos.
-6. Gerar combinacoes candidatas.
-7. Calcular metricas das candidatas.
-8. Aplicar filtros e formar o espaco residual.
-9. Ranquear combinacoes por score multicriterio.
-10. Selecionar jogos finais com controle de sobreposicao.
-11. Executar simulacao Monte Carlo de referencia.
-12. Exportar evidencias em CSV, PNG e TXT.
+1. Criar diretorios de trabalho.
+2. Baixar a base historica oficial quando ausente.
+3. Registrar proveniencia da base em `data/raw/SOURCE_CAIXA.md`.
+4. Importar e validar a planilha historica.
+5. Gerar base normalizada em `data/processed/`.
+6. Calcular metricas historicas das dezenas.
+7. Gerar combinacoes candidatas.
+8. Calcular metricas combinatorias das candidatas.
+9. Aplicar filtros e formar o espaco residual.
+10. Ranquear combinacoes por score multicriterio.
+11. Selecionar jogos finais com controle de sobreposicao.
+12. Executar simulacao Monte Carlo de referencia.
+13. Exportar evidencias em CSV, PNG, TXT e SHA-256.
 
 ## Criterios de aceitacao
 
@@ -114,37 +127,26 @@ Uma execucao e considerada valida quando:
 
 ## Evidencias obrigatorias
 
-A pasta de saida deve conter:
+A execucao deve gerar:
 
 ```text
-estatisticas_dezenas_v12.csv
-diagnostico_filtros_v12.csv
-top_residual_v12.csv
-jogos_final_v12.csv
-metricas_conjunto_final_v12.csv
-simulacao_monte_carlo_v12.csv
-resumo_simulacao_v12.csv
-grafico_frequencia_dezenas_v12.png
-grafico_score_residual_v12.png
-relatorio_execucao_v12.txt
+outputs/estatisticas_dezenas_v12.csv
+outputs/diagnostico_filtros_v12.csv
+outputs/top_residual_v12.csv
+outputs/jogos_final_v12.csv
+outputs/metricas_conjunto_final_v12.csv
+outputs/simulacao_monte_carlo_v12.csv
+outputs/resumo_simulacao_v12.csv
+figures/grafico_frequencia_dezenas_v12.png
+figures/grafico_score_residual_v12.png
+outputs/relatorio_execucao_v12.txt
+checksums/CHECKSUMS.sha256
+data/processed/lotofacil_historico_normalizado.csv
 ```
 
 ## Integridade
 
-Apos a execucao, gerar hashes SHA-256 dos arquivos de entrada e saida e registrar em `checksums/CHECKSUMS.sha256`.
-
-Exemplo em PowerShell:
-
-```powershell
-Get-FileHash .\data\raw\* -Algorithm SHA256
-Get-FileHash .\saida_axion_lotofacil_v12\* -Algorithm SHA256
-```
-
-Exemplo em Linux ou macOS:
-
-```bash
-sha256sum data/raw/* saida_axion_lotofacil_v12/* > checksums/CHECKSUMS.sha256
-```
+A rotina Python gera `checksums/CHECKSUMS.sha256` ao final da execucao. O arquivo deve ser preservado junto aos artefatos finais.
 
 ## Limites de interpretacao
 
