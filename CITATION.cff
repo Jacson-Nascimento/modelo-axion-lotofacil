@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Cite esta série documental utilizando os dados abaixo."
+title: "Modelo Axion Lotofácil: série de relatórios técnicos nº 1–4"
+type: dataset
+version: "1.0"
+date-released: 2026-07-23
+doi: "10.5281/zenodo.21522330"
+authors:
+  - family-names: "Nascimento"
+    given-names: "Jacson Cruz do"
+    orcid: "https://orcid.org/0009-0006-6535-9569"
+repository-code: "https://github.com/Jacson-Nascimento/Jacson-Nascimento"
+repository-artifact: "https://github.com/Jacson-Nascimento/Jacson-Nascimento/releases/tag/axion-relatorios-v1.0"
+url: "https://doi.org/10.5281/zenodo.21522330"
+abstract: >-
+  Série composta por quatro relatórios técnicos do Modelo Axion Lotofácil,
+  cobrindo testes de robustez e mineração de parâmetros, otimização
+  multiobjetivo, limites combinatórios exatos e fronteira de orçamento.
+  O DOI identifica a versão 1.0 arquivada no Zenodo.
+keywords:
+  - Lotofácil
+  - combinatória
+  - grafo de Johnson
+  - otimização de carteiras
+  - validação fora da amostra
+license: CC-BY-4.0
