@@ -1,0 +1,28 @@
+{
+  "title": "Modelo Axion Lotofácil: série de relatórios técnicos nº 1–4",
+  "description": "Série documental do Modelo Axion Lotofácil, composta por quatro relatórios técnicos: testes de robustez e mineração de parâmetros; otimização multiobjetivo de carteiras; limites exatos para 11+, 12+ e 13+; e fronteira de orçamento e eficiência marginal. Versão 1.0, Brasília, 2026. Os documentos registram os ciclos experimentais 3 a 6 e não constituem recomendação financeira nem artigos revisados por pares.",
+  "creators": [
+    {
+      "name": "Nascimento, Jacson Cruz do",
+      "orcid": "0009-0006-6535-9569"
+    }
+  ],
+  "keywords": [
+    "Lotofácil",
+    "combinatória",
+    "grafo de Johnson",
+    "otimização de carteiras",
+    "validação fora da amostra",
+    "Monte Carlo",
+    "mineração de parâmetros",
+    "reprodutibilidade"
+  ],
+  "license": "CC-BY-4.0",
+  "upload_type": "publication",
+  "publication_type": "report",
+  "access_right": "open",
+  "version": "1.0",
+  "publication_date": "2026-07-23",
+  "language": "por",
+  "notes": "Relatórios técnicos não submetidos à revisão por pares. A edição permanente está vinculada à GitHub Release axion-relatorios-v1.0."
+}
