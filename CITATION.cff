@@ -1,26 +1,27 @@
 cff-version: 1.2.0
-message: "Cite esta série documental utilizando os dados abaixo."
-title: "Modelo Axion Lotofácil: série de relatórios técnicos nº 1–4"
-type: dataset
-version: "1.0"
-date-released: 2026-07-23
-doi: "10.5281/zenodo.21522330"
+message: "Cite este projeto utilizando os dados abaixo."
+title: "Modelo Axion Lotofácil: pacote operacional de reprodutibilidade v1.2"
+type: software
+version: "1.2"
+date-released: 2026-08-19
+doi: "10.5281/zenodo.21522638"
 authors:
   - family-names: "Nascimento"
     given-names: "Jacson Cruz do"
     orcid: "https://orcid.org/0009-0006-6535-9569"
 repository-code: "https://github.com/Jacson-Nascimento/modelo-axion-lotofacil"
-repository-artifact: "https://github.com/Jacson-Nascimento/Jacson-Nascimento/releases/tag/axion-relatorios-v1.0"
-url: "https://doi.org/10.5281/zenodo.21522330"
+url: "https://doi.org/10.5281/zenodo.21522638"
 abstract: >-
-  Série composta por quatro relatórios técnicos do Modelo Axion Lotofácil,
-  cobrindo testes de robustez e mineração de parâmetros, otimização
-  multiobjetivo, limites combinatórios exatos e fronteira de orçamento.
-  O DOI identifica a versão 1.0 arquivada no Zenodo.
+  Pacote operacional do Modelo Axion Lotofácil para exploração combinatória,
+  espaço residual, score multicritério, seleção diversificada de combinações
+  e validação por simulação. O projeto não constitui recomendação financeira
+  nem garantia de premiação.
 keywords:
   - Lotofácil
   - combinatória
-  - grafo de Johnson
-  - otimização de carteiras
-  - validação fora da amostra
+  - espaço residual
+  - score multicritério
+  - Monte Carlo
+  - reprodutibilidade
+  - auditoria analítica
 license: CC-BY-4.0

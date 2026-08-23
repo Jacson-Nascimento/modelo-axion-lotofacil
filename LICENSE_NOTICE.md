@@ -1,4 +1,4 @@
-# Política de licenciamento
+# Política de licenciamento - Modelo Axion Lotofácil v1.2
 
 Este repositório utiliza licenciamento por tipo de conteúdo para distinguir software, documentação técnico-científica e dados.
 
@@ -6,13 +6,15 @@ Este repositório utiliza licenciamento por tipo de conteúdo para distinguir so
 
 O código original de autoria de **Jacson Cruz do Nascimento** mantido neste repositório é disponibilizado sob a **MIT License**, conforme `LICENSE_CODE_MIT.txt`, salvo indicação expressa em arquivo específico.
 
-Cópias de código já depositadas no Zenodo permanecem também sujeitas à licença registrada no respectivo depósito. A adoção da MIT License no GitHub não revoga direitos anteriormente concedidos nem altera retroativamente versões arquivadas.
+A versão 1.2 já depositada no Zenodo permanece também sujeita à licença registrada naquele depósito. A disponibilização do código no GitHub sob MIT não revoga direitos anteriormente concedidos nem altera retroativamente o conteúdo arquivado.
 
 ## 2. Relatórios e documentação
 
-A série documental do **Modelo Axion Lotofácil**, incluindo os relatórios técnicos e a documentação textual original, é disponibilizada sob a **Creative Commons Attribution 4.0 International (CC BY 4.0)**, salvo indicação diversa.
+Relatórios técnicos, documentação textual e demais materiais autorais são disponibilizados sob a **Creative Commons Attribution 4.0 International (CC BY 4.0)**, salvo indicação diversa.
 
-A versão 1.0 arquivada permanece vinculada ao DOI `10.5281/zenodo.21522330` e à licença registrada no depósito correspondente.
+- DOI da versão 1.2: `10.5281/zenodo.21522638`
+- DOI conceitual: `10.5281/zenodo.21522329`
+- A série documental v1.0 permanece vinculada ao DOI `10.5281/zenodo.21522330`.
 
 ## 3. Dados e resultados
 

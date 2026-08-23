@@ -1,0 +1,87 @@
+{
+  "title": "Modelo Axion Lotofácil v1.2: pacote operacional de reprodutibilidade e relatório técnico",
+  "creator": {
+    "name": "Jacson Cruz do Nascimento",
+    "orcid": "https://orcid.org/0009-0006-6535-9569"
+  },
+  "resource_type": "software",
+  "version": "1.2",
+  "publication_date": "2026-08-19",
+  "language": "por",
+  "doi": "10.5281/zenodo.21522638",
+  "doi_url": "https://doi.org/10.5281/zenodo.21522638",
+  "record_url": "https://zenodo.org/records/21522638",
+  "concept_doi": "10.5281/zenodo.21522329",
+  "concept_doi_url": "https://doi.org/10.5281/zenodo.21522329",
+  "record_id": "21522638",
+  "concept_record_id": "21522329",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.21522330",
+      "relation": "isVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.21522638",
+      "relation": "isIdenticalTo",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/pull/61",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "license": "CC BY 4.0",
+  "repository_code": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/tree/agent/lotofacil-reprodutibilidade-v12/lotofacil_axion",
+  "status": "published",
+  "submitted": true,
+  "zenodo_state": "done",
+  "archival_strategy": "lightweight-package",
+  "archival_note": "Preserva base histórica normalizada, fonte CAIXA, hash SHA-256 da planilha bruta, outputs, figuras, relatório técnico e checksums. A planilha bruta baixada pela rotina operacional não é anexada ao pacote final.",
+  "technical_report": "docs/reports/RELATORIO_TECNICO_REPRODUTIBILIDADE_v1_2.md",
+  "artifact_inspection": "docs/reports/INSPECAO_ARTEFATOS_LOTOFACIL_v1_2.md",
+  "zenodo_manifest": "zenodo/ZENODO_UPLOAD_MANIFEST_Lotofacil_v1_2.md",
+  "zenodo_metadata": "zenodo/zenodo_metadata_lotofacil_v1_2.json",
+  "validated_workflow": {
+    "name": "lotofacil-v12-pr-validation",
+    "run_id": "32270708543",
+    "artifact_id": "9372037884",
+    "artifact_digest": "sha256:184e62b29f351ca184bfde5a57247235ae5947dc284431c6691526ee27e4348f"
+  },
+  "published_files": [
+    {
+      "file": "Jacson-Nascimento/Jacson-Nascimento-axion-relatorios-v1.0.zip",
+      "size_bytes": 109413,
+      "zenodo_checksum": "904c8edd8a4aaa45193792eed51c4b15"
+    },
+    {
+      "file": "Zenodo_Modelo_Axion_Lotofacil_v1_2_pacote_leve.zip",
+      "size_bytes": 434416,
+      "zenodo_checksum": "c6df6aaead3db647a364dc1a969bac1b"
+    }
+  ],
+  "file_inventory": [
+    {
+      "file": "Relatorio_Tecnico_Modelo_Axion_Lotofacil_v1_2.pdf",
+      "sha256": "adda134bdb3d8c393808447e7a87eb9890932639ba8197d92aee4ecfae45bf0a"
+    },
+    {
+      "file": "Relatorio_Tecnico_Modelo_Axion_Lotofacil_v1_2.docx",
+      "sha256": "358df36163df746a611e7d2cda2bfd0da75fbc7f5a6ba5fed85d80611a703836"
+    },
+    {
+      "file": "Relatorio_Tecnico_Modelo_Axion_Lotofacil_v1_2.md",
+      "sha256": "97699eed03644bb5e3d94979f172dfa00884912633ad6478cd4563307c381cbc"
+    },
+    {
+      "file": "lotofacil-v12-pr-validation-artifacts.zip",
+      "sha256": "184e62b29f351ca184bfde5a57247235ae5947dc284431c6691526ee27e4348f"
+    },
+    {
+      "file": "inspecao_artefatos_lotofacil_v12.md",
+      "sha256": "3bd933fc5a155b8186a1468b132bafec77d3ef25e39d37bf593ebbcbe11a6911"
+    }
+  ],
+  "description": "Pacote operacional de reprodutibilidade do Modelo Axion Lotofácil v1.2, com execução principal em Python, validação em GitHub Actions, base histórica normalizada, registro de fonte CAIXA, hash SHA-256 da planilha bruta, outputs, figuras, checksums e relatório técnico. O modelo documenta procedimentos de exploração estatística e combinatória, formação de espaço residual e seleção multicritério. Não constitui recomendação financeira, garantia de premiação ou demonstração de vantagem preditiva contra sorteios regulares."
+}

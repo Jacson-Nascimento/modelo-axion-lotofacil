@@ -1,0 +1,80 @@
+{
+  "title": "Modelo Axion Lotofácil v1.2: pacote operacional de reprodutibilidade e relatório técnico",
+  "upload_type": "software",
+  "publication_type": "technicalnote",
+  "creators": [
+    {
+      "name": "Jacson Cruz do Nascimento",
+      "orcid": "0009-0006-6535-9569",
+      "affiliation": "Brasília-DF, Brasil"
+    }
+  ],
+  "description": "Pacote operacional de reprodutibilidade do Modelo Axion Lotofácil v1.2, com execução principal em Python, validação em GitHub Actions, base histórica normalizada, registro de fonte CAIXA, hash SHA-256 da planilha bruta, outputs, figuras, checksums e relatório técnico. O modelo documenta procedimentos de exploração estatística e combinatória, formação de espaço residual e seleção multicritério. Não constitui recomendação financeira, garantia de premiação ou demonstração de vantagem preditiva contra sorteios regulares.",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "version": "1.2",
+  "publication_date": "2026-08-19",
+  "keywords": [
+    "Lotofácil",
+    "reprodutibilidade",
+    "Python",
+    "GitHub Actions",
+    "espaço residual",
+    "score multicritério",
+    "simulação Monte Carlo",
+    "loterias",
+    "combinatória",
+    "checksums"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.21522330",
+      "relation": "isVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/pull/61",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/tree/agent/lotofacil-reprodutibilidade-v12/lotofacil_axion",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "language": "por",
+  "notes": "Pacote arquivístico leve: preserva base histórica normalizada, fonte CAIXA, hash da planilha bruta, outputs, figuras, relatório e checksums, sem anexar a planilha bruta baixada pela rotina operacional.",
+  "file_inventory": [
+    {
+      "file": "Relatorio_Tecnico_Modelo_Axion_Lotofacil_v1_2.pdf",
+      "description": "Relatório técnico em PDF",
+      "sha256": "adda134bdb3d8c393808447e7a87eb9890932639ba8197d92aee4ecfae45bf0a",
+      "size_bytes": 339325
+    },
+    {
+      "file": "Relatorio_Tecnico_Modelo_Axion_Lotofacil_v1_2.docx",
+      "description": "Relatório técnico em DOCX",
+      "sha256": "358df36163df746a611e7d2cda2bfd0da75fbc7f5a6ba5fed85d80611a703836",
+      "size_bytes": 125213
+    },
+    {
+      "file": "Relatorio_Tecnico_Modelo_Axion_Lotofacil_v1_2.md",
+      "description": "Relatório técnico em Markdown",
+      "sha256": "97699eed03644bb5e3d94979f172dfa00884912633ad6478cd4563307c381cbc",
+      "size_bytes": 12243
+    },
+    {
+      "file": "lotofacil-v12-pr-validation-artifacts.zip",
+      "description": "Artefatos do workflow Python validado",
+      "sha256": "184e62b29f351ca184bfde5a57247235ae5947dc284431c6691526ee27e4348f",
+      "size_bytes": 144265
+    },
+    {
+      "file": "inspecao_artefatos_lotofacil_v12.md",
+      "description": "Relatório de inspeção dos artefatos do workflow",
+      "sha256": "3bd933fc5a155b8186a1468b132bafec77d3ef25e39d37bf593ebbcbe11a6911",
+      "size_bytes": 2808
+    }
+  ]
+}

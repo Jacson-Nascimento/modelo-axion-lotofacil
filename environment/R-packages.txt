@@ -1,0 +1,8 @@
+readxl
+dplyr
+tidyr
+purrr
+stringr
+tibble
+readr
+ggplot2

@@ -1,0 +1,46 @@
+name: lotofacil-v12-pr-validation
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate-lotofacil-v12-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r environment/python-requirements.txt
+
+      - name: Run reproducibility pipeline in Python
+        run: python python/run_all.py
+
+      - name: Verify reproducibility artifacts
+        run: |
+          test -f outputs/jogos_final_v12.csv
+          test -f outputs/metricas_conjunto_final_v12.csv
+          test -f outputs/relatorio_execucao_v12.txt
+          test -f figures/grafico_frequencia_dezenas_v12.png
+          test -f figures/grafico_score_residual_v12.png
+          test -f checksums/CHECKSUMS.sha256
+
+      - name: Upload reproducibility artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lotofacil-v12-pr-validation-artifacts
+          path: |
+            data/raw/SOURCE_CAIXA.md
+            data/processed
+            outputs
+            figures
+            checksums
