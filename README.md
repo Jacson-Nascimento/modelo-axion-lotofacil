@@ -10,7 +10,8 @@ Projeto experimental de modelagem combinatória, validação fora da amostra e o
 - Série arquivada: **Relatórios técnicos nº 1–4, versão 1.0**
 - DOI: **[10.5281/zenodo.21522330](https://doi.org/10.5281/zenodo.21522330)**
 - Licença da série: **CC BY 4.0**
-- Release: [`axion-relatorios-v1.0`](https://github.com/Jacson-Nascimento/Jacson-Nascimento/releases/tag/axion-relatorios-v1.0)
+- Código canônico: **https://github.com/Jacson-Nascimento/modelo-axion-lotofacil**
+- Release histórico v1.0: [`axion-relatorios-v1.0`](https://github.com/Jacson-Nascimento/Jacson-Nascimento/releases/tag/axion-relatorios-v1.0)
 
 ## Documentos
 
@@ -22,6 +23,12 @@ Projeto experimental de modelagem combinatória, validação fora da amostra e o
 
 Os arquivos da versão 1.0 depositados no Zenodo são imutáveis e identificados pelo DOI acima. As revisões editoriais 1.0.1 acrescentam o DOI e corrigem metadados, sem alteração dos resultados, métodos ou conclusões. Novas alterações substantivas deverão ser publicadas como nova versão no Zenodo.
 
+O release `axion-relatorios-v1.0` permanece no repositório histórico de origem e, por isso, seu link é preservado. A continuidade do código e dos pacotes de reprodutibilidade ocorre neste repositório dedicado.
+
 ## Escopo
 
 O projeto não demonstra vantagem preditiva contra um sorteio justo e não constitui recomendação financeira ou garantia de premiação. Sua contribuição está na falsificação estatística, na auditoria de sobreajuste, na representação pelo grafo de Johnson e na otimização combinatória de cobertura.
+
+## Proveniência
+
+Este repositório foi separado de `Jacson-Nascimento/Jacson-Nascimento`, onde o projeto residia em `lotofacil_axion/`. A migração de 23/08/2026 preservou o histórico e manteve a cópia de origem para rastreabilidade.
