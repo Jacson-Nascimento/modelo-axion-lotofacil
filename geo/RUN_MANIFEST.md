@@ -1,20 +1,27 @@
-# AXION-GEO Phase 0 - Run Manifest
+# AXION-GEO - Run Manifest
 
-- Project: AXION-GEO
-- Version: 0.1.0
-- Execution date: 2026-09-10
-- Baseline contests: 1-3435
-- Input: binary_matrix.csv, mantido no acervo Axion e no pacote arquivado da execução
-- Input SHA-256: 1b914b6ce9c566c12352d92ba739177ab741a587eaf1be4f64e5de1597768166
-- Feature catalog: 47 spatial features
-- N0: uniform 15-of-25 without replacement
-- Monte Carlo draws: 20000
-- Seed: 20260910
-- Multiplicity: Benjamini-Hochberg across 47 phase-0 mean screens
-- Unit tests: 5 passed
-- Minimum q_BH: 0.0600787726684423
-- Features at minimum q: centroid_x, col_5
-- Predictive integration: none
-- Git branch: feature/axion-geo-phase0
-- GitHub draft PR: #4
-- Next formal step: preregister N1 fixed-margin null before GEO holdout analysis
+Autor: Jacson Cruz do Nascimento  
+Branch experimental: `feature/axion-geo-phase0`
+
+## Fase 0
+
+- Base congelada: concursos 1 a 3435.
+- Representação: matriz binária 25D / grade 5x5.
+- Catálogo: 47 atributos geométricos.
+- Nulo: uniforme 15/25 sem reposição.
+- Monte Carlo: B = 20.000.
+- Seed: 20260910.
+- Correção: Benjamini-Hochberg.
+- Resultado: nenhuma feature promovida após controle de multiplicidade.
+
+## Fase 1 visual
+
+- Entrada: `geo/data/binary_matrix.csv.gz`.
+- Script: `geo/src/run_visual_phase1.py`.
+- Workflow: `.github/workflows/axion-geo-visual.yml`.
+- Janelas: total, 1000, 500 e 250 concursos.
+- Saídas: sete PNGs, resumo por célula, metadados, manifesto, checksums e README de resultados.
+- Publicação: GitHub Actions Job Summary, artefato de execução e commit automático em `geo/outputs/visuals/`.
+- Status: exploratório, sem uso preditivo.
+
+Próximo gate: N1 com preservação das frequências marginais históricas por dezena.
