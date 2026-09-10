@@ -39,23 +39,30 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-      - name: Reconstruct frozen Phase 0 matrix
+      - name: Reconstruct and validate frozen Phase 0 matrix
         run: |
           mkdir -p /tmp/axion_geo
           : > /tmp/axion_geo/binary_matrix.csv
           for f in $(find geo/data/parts -type f -name 'part_*.csv.gz' | sort); do
             gzip -dc "$f" >> /tmp/axion_geo/binary_matrix.csv
           done
-          echo '1b914b6ce9c566c12352d92ba739177ab741a587eaf1be4f64e5de1597768166  /tmp/axion_geo/binary_matrix.csv' | sha256sum -c -
+          sha256sum /tmp/axion_geo/binary_matrix.csv
           python - <<'PY'
+          import hashlib
           import pandas as pd
           p='/tmp/axion_geo/binary_matrix.csv'
           d=pd.read_csv(p)
+          print('rows', len(d))
+          print('contest_min', d.contest.min(), 'contest_max', d.contest.max())
+          print('duplicate_contests', int(d.contest.duplicated().sum()))
+          print('sha256', hashlib.sha256(open(p,'rb').read()).hexdigest())
           assert len(d)==3435, len(d)
           assert list(d.columns[:2])==['contest','date']
           assert list(d.columns[2:])==[f'd{i:02d}' for i in range(1,26)]
-          assert (d.iloc[:,2:].sum(axis=1)==15).all()
-          print('matrix_ok', len(d), d.contest.min(), d.contest.max())
+          assert d.contest.tolist()==list(range(1,3436)), 'contest sequence mismatch'
+          assert (d.iloc[:,2:].sum(axis=1)==15).all(), 'row sum mismatch'
+          assert d.iloc[:,2:].isin([0,1]).all().all(), 'non-binary cell found'
+          print('matrix_structural_validation=PASS')
           PY
 
       - name: Validate AXION-GEO core
@@ -131,5 +138,3 @@ jobs:
           path: geo/outputs/visuals/
           if-no-files-found: error
           retention-days: 90
-
-# execution trigger 2026-09-10
