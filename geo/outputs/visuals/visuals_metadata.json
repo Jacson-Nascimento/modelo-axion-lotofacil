@@ -1,0 +1,25 @@
+{
+  "project": "AXION-GEO",
+  "phase": 1,
+  "status": "exploratory_visual_diagnostics",
+  "author": "Jacson Cruz do Nascimento",
+  "input_file": "binary_matrix.csv",
+  "input_sha256": "1b914b6ce9c566c12352d92ba739177ab741a587eaf1be4f64e5de1597768166",
+  "phase0_summary_file": "null_summary_B20000.csv",
+  "phase0_summary_sha256": "2907548c2b2c21bdc07e62378f73d7d63e1b7ca0114b136b5f89d984b9bce309",
+  "n_contests": 3435,
+  "first_contest": 1,
+  "last_contest": 3435,
+  "first_date": "2003-09-29",
+  "last_date": "2025-07-05",
+  "windows": [
+    "total",
+    1000,
+    500,
+    250
+  ],
+  "null_model": "N0_uniform_without_replacement_15_of_25",
+  "cell_expected_rate_n0": 0.6,
+  "phase0_multiple_testing": "Benjamini-Hochberg",
+  "interpretation": "diagnostic_only_no_predictive_promotion"
+}
