@@ -1,81 +1,52 @@
 # AXION-GEO
 
-## Geometria espacial da Lotofácil
+Braço experimental do Modelo Axion Lotofácil dedicado à análise espacial e morfológica dos concursos na grade 5x5.
 
-**Autor:** Jacson Cruz do Nascimento  
-**Status:** experimental, Fase 0  
-**Versão:** 0.1.0  
-**Data de congelamento da especificação:** 2026-09-10
+## Objetivo
 
-AXION-GEO é um braço experimental do Modelo Axion dedicado à morfologia espacial dos sorteios da Lotofácil no volante 5x5. Cada concurso é representado como uma matriz binária 5x5, com as dezenas 01 a 25 em ordem por linhas.
-
-O objetivo é medir propriedades geométricas que podem ficar ocultas em estatísticas agregadas, como adjacência, componentes conectados, centroide, dispersão, forma, corridas e simetrias. A existência de um padrão visual não é tratada como evidência preditiva. Toda hipótese deve ser confrontada com modelos nulos explícitos e, antes de qualquer uso operacional, com validação fora da amostra.
-
-## Relação com os demais braços do Axion
-
-AXION-GEO não substitui o Axion principal nem o estudo anterior de quadrantes. O estudo de quadrantes resume cada combinação em poucos eixos agregados. O GEO preserva a estrutura completa do volante e mede a morfologia da ocupação das 15 células.
-
-A Fase 0 reutiliza a matriz binária produzida pelo projeto Axion até o concurso 3435. Concursos posteriores não foram utilizados para ajustar o catálogo GEO de atributos.
+Investigar propriedades geométricas observáveis dos sorteios sem assumir capacidade preditiva. Todo padrão visual deve ser comparado com modelo nulo e submetido a controle de multiplicidade, estabilidade temporal e validação fora da amostra antes de qualquer uso operacional.
 
 ## Fase 0
 
-A Fase 0 congela:
+A Fase 0 congelou 47 atributos geométricos e comparou suas médias contra o modelo nulo uniforme 15/25. Nenhuma feature foi promovida como evidência estatística após correção Benjamini-Hochberg.
 
-- mapeamento 5x5;
-- catálogo de 47 atributos espaciais;
-- validações de integridade;
-- modelo nulo N0, 15 dezenas escolhidas uniformemente entre 25, sem reposição;
-- seed `20260910`;
-- triagem com `B = 20.000` combinações nulas;
-- correção Benjamini-Hochberg sobre os 47 testes de média;
-- política de não integração preditiva nesta etapa.
+## Fase 1 visual
 
-Resultado: nenhum atributo atingiu `q < 0,05`. Os menores valores ajustados foram aproximadamente `q = 0,0601` para `centroid_x` e `col_5`. Esses dois resultados são fortemente relacionados e apontam primeiro para uma assimetria marginal horizontal, não para evidência independente de uma forma geométrica recorrente.
+A Fase 1 gera automaticamente, via GitHub Actions, a camada visual exploratória a partir da matriz binária congelada da Fase 0.
 
-## Estrutura
+Artefatos previstos em `geo/outputs/visuals/`:
 
-```text
-geo/
-  README.md
-  config/
-    phase0.json
-  docs/
-    00_PROJECT_CHARTER.md
-    01_METRICS_CATALOG.md
-    02_VALIDATION_PROTOCOL.md
-    03_VISUALIZATION_PLAN.md
-    04_DECISION_LOG.md
-    05_PHASE0_REPORT.md
-  src/
-    geometry.py
-    run_phase0.py
-  tests/
-    test_geometry.py
-  outputs/
-    README.md
-    null_summary_B20000.csv
-    phase0_metadata_B20000.json
-    CHECKSUMS.sha256
-```
+- `01_heatmap_observado_total.png`
+- `02_heatmap_esperado_n0_total.png`
+- `03_heatmap_residuo_padronizado_total.png`
+- `04_small_multiples_observado_janelas.png`
+- `05_small_multiples_residuo_janelas.png`
+- `06_barplot_macrogeometria_zscores.png`
+- `07_dashboard_fase1_resumo.png`
+- `visuals_summary.csv`
+- `visuals_metadata.json`
+- `visuals_manifest.md`
+- `README.md`
 
-O arquivo completo `geo_feature_matrix.csv` é um artefato derivado e pode ser regenerado a partir da matriz binária de entrada.
+## Entrada congelada
 
-## Execução
+A matriz binária da Fase 0 é preservada em `geo/data/binary_matrix.csv.gz`. O arquivo representa concursos 1 a 3435, com 25 colunas binárias `d01` a `d25`, além de `contest` e `date`.
+
+## Execução local
 
 ```bash
-PYTHONPATH=geo/src python geo/src/run_phase0.py \
-  --input /caminho/para/binary_matrix.csv \
-  --output-dir geo/outputs \
-  --null-draws 20000 \
-  --seed 20260910
+python geo/src/run_visual_phase1.py \
+  --input geo/data/binary_matrix.csv.gz \
+  --phase0-summary geo/outputs/null_summary_B20000.csv \
+  --output-dir geo/outputs/visuals
 ```
 
-Testes:
+## Execução no GitHub
 
-```bash
-PYTHONPATH=geo/src python -m pytest -q geo/tests/test_geometry.py
-```
+O workflow `.github/workflows/axion-geo-visual.yml` roda automaticamente em mudanças da camada GEO e também permite execução manual. Ele valida a base, executa os testes, produz os sete gráficos, publica os resultados no Job Summary e disponibiliza todos os artefatos para download.
 
 ## Regra de interpretação
 
-O AXION-GEO parte da hipótese de aleatoriedade. Um padrão só pode avançar para teste prospectivo se for definido antes do teste, superar o modelo nulo apropriado, resistir ao controle de multiplicidade, mostrar estabilidade e sobreviver fora da amostra. Visualizações são instrumentos de diagnóstico, não provas.
+Os gráficos são diagnósticos exploratórios. Concentração visual, simetria, cluster ou resíduo extremo não constituem evidência de vantagem preditiva. A hipótese operacional prioritária permanece a aleatoriedade.
+
+Autor: Jacson Cruz do Nascimento
