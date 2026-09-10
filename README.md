@@ -18,6 +18,11 @@ Projeto experimental de modelagem combinatória, validação fora da amostra e o
 - [Artigos técnico-científicos](docs/papers/README.md)
 - [Relatórios técnicos e revisões editoriais](docs/reports/README.md)
 - [Procedimento de depósito no Zenodo](docs/ZENODO_DEPOSIT.md)
+- [AXION-GEO, análise espacial 5x5](geo/README.md)
+
+## AXION-GEO
+
+O braço `geo/` investiga propriedades espaciais e morfológicas do volante 5x5. A Fase 1 visual é executada por GitHub Actions e publica heatmaps, resíduos padronizados, janelas temporais e um dashboard em `geo/outputs/visuals/`. Os resultados permanecem exploratórios e não alteram o núcleo preditivo do projeto.
 
 ## Nota de versionamento
 

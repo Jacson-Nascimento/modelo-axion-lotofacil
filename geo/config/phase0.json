@@ -1,0 +1,17 @@
+{
+  "project": "AXION-GEO",
+  "version": "0.1.0",
+  "phase": 0,
+  "grid_mapping": "row_major_01_25",
+  "selected_per_draw": 15,
+  "baseline_last_contest": 3435,
+  "feature_count": 47,
+  "null_model_n0": "uniform_without_replacement_15_of_25",
+  "null_draws": 20000,
+  "seed": 20260910,
+  "multiple_testing": "Benjamini-Hochberg across 47 phase-0 mean screens",
+  "alpha": 0.05,
+  "status": "screening_only",
+  "predictive_integration": false,
+  "planned_next_null": "fixed_margin_2x2_edge_swap"
+}

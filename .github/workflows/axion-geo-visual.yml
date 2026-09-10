@@ -1,0 +1,159 @@
+name: AXION-GEO Visual Phase 1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/axion-geo-phase0
+    paths:
+      - 'geo/src/**'
+      - 'geo/data/**'
+      - 'geo/tests/**'
+      - 'geo/outputs/null_summary_B20000.csv'
+      - 'requirements.txt'
+      - '.github/workflows/axion-geo-visual.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  visual-phase1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Reconstruct and validate frozen Phase 0 matrix
+        run: |
+          mkdir -p /tmp/axion_geo
+          : > /tmp/axion_geo/binary_matrix.csv
+          for f in $(find geo/data/parts -type f -name 'part_*.csv.gz' | sort); do
+            gzip -dc "$f" >> /tmp/axion_geo/binary_matrix.csv
+          done
+          python - <<'PY'
+          import hashlib
+          import pandas as pd
+          p='/tmp/axion_geo/binary_matrix.csv'
+          d=pd.read_csv(p)
+          expected=set(range(1,3436))
+          actual=set(d.contest.astype(int).tolist())
+          dup_ids=sorted(d.loc[d.contest.duplicated(keep=False), 'contest'].astype(int).unique().tolist())
+          missing=sorted(expected-actual)
+          extra=sorted(actual-expected)
+          print('raw_rows', len(d))
+          print('duplicate_ids', dup_ids)
+          print('missing_contests', missing)
+          print('extra_contests', extra)
+          assert dup_ids == [1030, 1031], dup_ids
+          assert missing == [687], missing
+          assert extra == [], extra
+          for contest in dup_ids:
+              g=d[d.contest.eq(contest)]
+              assert len(g.drop_duplicates()) == 1, f'conflicting duplicate rows for {contest}'
+          repair=pd.read_csv('geo/data/repair/contest_0687.csv')
+          assert repair.contest.astype(int).tolist() == [687]
+          d=d.drop_duplicates(subset=['contest'], keep='first')
+          d=pd.concat([d, repair], ignore_index=True).sort_values('contest').reset_index(drop=True)
+          d.to_csv(p, index=False, lineterminator='\r\n')
+          sha=hashlib.sha256(open(p,'rb').read()).hexdigest()
+          print('canonical_rows', len(d))
+          print('canonical_sha256', sha)
+          assert sha == '1b914b6ce9c566c12352d92ba739177ab741a587eaf1be4f64e5de1597768166', sha
+          assert len(d)==3435
+          assert list(d.columns[:2])==['contest','date']
+          assert list(d.columns[2:])==[f'd{i:02d}' for i in range(1,26)]
+          assert d.contest.astype(int).tolist()==list(range(1,3436))
+          assert (d.iloc[:,2:].sum(axis=1)==15).all()
+          assert d.iloc[:,2:].isin([0,1]).all().all()
+          print('matrix_structural_validation=PASS')
+          PY
+
+      - name: Validate AXION-GEO core
+        env:
+          PYTHONPATH: geo/src
+        run: pytest -q geo/tests/test_geometry.py
+
+      - name: Generate visual diagnostics
+        run: |
+          python geo/src/run_visual_phase1.py \
+            --input /tmp/axion_geo/binary_matrix.csv \
+            --phase0-summary geo/outputs/null_summary_B20000.csv \
+            --output-dir geo/outputs/visuals \
+            --windows 1000 500 250
+
+      - name: Verify expected outputs
+        run: |
+          test -f geo/outputs/visuals/01_heatmap_observado_total.png
+          test -f geo/outputs/visuals/02_heatmap_esperado_n0_total.png
+          test -f geo/outputs/visuals/03_heatmap_residuo_padronizado_total.png
+          test -f geo/outputs/visuals/04_small_multiples_observado_janelas.png
+          test -f geo/outputs/visuals/05_small_multiples_residuo_janelas.png
+          test -f geo/outputs/visuals/06_barplot_macrogeometria_zscores.png
+          test -f geo/outputs/visuals/07_dashboard_fase1_resumo.png
+          test -f geo/outputs/visuals/README.md
+          test -f geo/outputs/visuals/visuals_summary.csv
+          test -f geo/outputs/visuals/visuals_metadata.json
+          test -f geo/outputs/visuals/CHECKSUMS.sha256
+
+      - name: Publish job summary
+        run: |
+          echo '# AXION-GEO - Fase 1 visual' >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Execução concluída sobre a matriz congelada dos concursos 1 a 3435.' >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo '## Resultado metodológico' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Camada visual: exploratória.' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Referência por célula: N0 uniforme 15/25, p = 0,60.' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Janelas: total, 1000, 500 e 250 concursos.' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Nenhum gráfico autoriza alteração de filtros ou pesos.' >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo '## Maiores resíduos absolutos por célula' >> "$GITHUB_STEP_SUMMARY"
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import pandas as pd
+          d = pd.read_csv('geo/outputs/visuals/visuals_summary.csv')
+          d = d[d.window.eq('total')].copy()
+          d['abs_z'] = d.z_n0.abs()
+          d = d.sort_values('abs_z', ascending=False).head(8)
+          print('| Dezena | Linha | Coluna | Taxa observada | z N0 |')
+          print('|---:|---:|---:|---:|---:|')
+          for _, r in d.iterrows():
+              print(f"| {int(r.dezena):02d} | {int(r.row)} | {int(r.col)} | {r.observed_rate:.4f} | {r.z_n0:.3f} |")
+          PY
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Os PNGs e o relatório completo estão em `geo/outputs/visuals/`.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit generated results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add geo/outputs/visuals
+          if git diff --cached --quiet; then
+            echo "No visual output changes to commit."
+          else
+            git commit -m "results: generate AXION-GEO phase 1 visual diagnostics [skip ci]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+
+      - name: Upload visual package
+        uses: actions/upload-artifact@v4
+        with:
+          name: axion-geo-phase1-visuals
+          path: geo/outputs/visuals/
+          if-no-files-found: error
+          retention-days: 90
