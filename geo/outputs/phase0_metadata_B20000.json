@@ -1,0 +1,20 @@
+{
+  "project": "AXION-GEO",
+  "version": "0.1.0",
+  "phase": 0,
+  "status": "screening_only",
+  "input_file": "binary_matrix.csv",
+  "input_sha256": "1b914b6ce9c566c12352d92ba739177ab741a587eaf1be4f64e5de1597768166",
+  "n_contests": 3435,
+  "first_contest": 1,
+  "last_contest": 3435,
+  "first_date": "2003-09-29",
+  "last_date": "2025-07-05",
+  "feature_count": 47,
+  "null_model": "uniform_without_replacement_15_of_25",
+  "null_draws": 20000,
+  "seed": 20260910,
+  "multiple_testing": "Benjamini-Hochberg across phase-0 mean screens",
+  "screening_note": "The z/p/q columns are triage statistics, not evidence of prediction. They account for Monte Carlo uncertainty in the estimated null mean.",
+  "holdout_policy": "Phase-0 feature definitions use contests through the supplied baseline only. Post-baseline contests are not used to tune the feature catalog."
+}
