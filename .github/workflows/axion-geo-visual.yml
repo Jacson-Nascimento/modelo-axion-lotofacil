@@ -52,9 +52,16 @@ jobs:
           import pandas as pd
           p='/tmp/axion_geo/binary_matrix.csv'
           d=pd.read_csv(p)
+          expected=set(range(1,3436))
+          actual=set(d.contest.astype(int).tolist())
+          dup=d.loc[d.contest.duplicated(keep=False), 'contest'].astype(int).tolist()
+          missing=sorted(expected-actual)
+          extra=sorted(actual-expected)
           print('rows', len(d))
           print('contest_min', d.contest.min(), 'contest_max', d.contest.max())
-          print('duplicate_contests', int(d.contest.duplicated().sum()))
+          print('duplicate_contests', dup)
+          print('missing_contests', missing)
+          print('extra_contests', extra)
           print('sha256', hashlib.sha256(open(p,'rb').read()).hexdigest())
           assert len(d)==3435, len(d)
           assert list(d.columns[:2])==['contest','date']
