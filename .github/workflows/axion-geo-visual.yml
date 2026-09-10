@@ -39,6 +39,25 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Reconstruct frozen Phase 0 matrix
+        run: |
+          mkdir -p /tmp/axion_geo
+          : > /tmp/axion_geo/binary_matrix.csv
+          for f in $(find geo/data/parts -type f -name 'part_*.csv.gz' | sort); do
+            gzip -dc "$f" >> /tmp/axion_geo/binary_matrix.csv
+          done
+          echo '1b914b6ce9c566c12352d92ba739177ab741a587eaf1be4f64e5de1597768166  /tmp/axion_geo/binary_matrix.csv' | sha256sum -c -
+          python - <<'PY'
+          import pandas as pd
+          p='/tmp/axion_geo/binary_matrix.csv'
+          d=pd.read_csv(p)
+          assert len(d)==3435, len(d)
+          assert list(d.columns[:2])==['contest','date']
+          assert list(d.columns[2:])==[f'd{i:02d}' for i in range(1,26)]
+          assert (d.iloc[:,2:].sum(axis=1)==15).all()
+          print('matrix_ok', len(d), d.contest.min(), d.contest.max())
+          PY
+
       - name: Validate AXION-GEO core
         env:
           PYTHONPATH: geo/src
@@ -47,7 +66,7 @@ jobs:
       - name: Generate visual diagnostics
         run: |
           python geo/src/run_visual_phase1.py \
-            --input geo/data/binary_matrix.csv.gz \
+            --input /tmp/axion_geo/binary_matrix.csv \
             --phase0-summary geo/outputs/null_summary_B20000.csv \
             --output-dir geo/outputs/visuals \
             --windows 1000 500 250
@@ -91,7 +110,7 @@ jobs:
               print(f"| {int(r.dezena):02d} | {int(r.row)} | {int(r.col)} | {r.observed_rate:.4f} | {r.z_n0:.3f} |")
           PY
           echo '' >> "$GITHUB_STEP_SUMMARY"
-          echo 'Os PNGs e o relatório completo são gravados em `geo/outputs/visuals/`.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Os PNGs e o relatório completo estão em `geo/outputs/visuals/`.' >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit generated results
         run: |
