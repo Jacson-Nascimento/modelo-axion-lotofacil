@@ -18,11 +18,11 @@ Projeto experimental de modelagem combinatória, validação fora da amostra e o
 - [Artigos técnico-científicos](docs/papers/README.md)
 - [Relatórios técnicos e revisões editoriais](docs/reports/README.md)
 - [Procedimento de depósito no Zenodo](docs/ZENODO_DEPOSIT.md)
-- [AXION-GEO, geometria espacial 5x5](geo/README.md)
+- [AXION-GEO, análise espacial 5x5](geo/README.md)
 
 ## AXION-GEO
 
-O diretório `geo/` contém um braço experimental separado para mensurar a morfologia espacial dos sorteios no volante 5x5. A Fase 0 congela 47 atributos geométricos, executa um modelo nulo uniforme 15/25 e preserva protocolo, código, testes, metadados e resultados de triagem. Nenhuma variável GEO é integrada ao processo de seleção de jogos nesta etapa.
+O braço `geo/` investiga propriedades espaciais e morfológicas do volante 5x5. A Fase 1 visual é executada por GitHub Actions e publica heatmaps, resíduos padronizados, janelas temporais e um dashboard em `geo/outputs/visuals/`. Os resultados permanecem exploratórios e não alteram o núcleo preditivo do projeto.
 
 ## Nota de versionamento
 
