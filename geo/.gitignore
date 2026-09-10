@@ -1,0 +1,4 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+outputs/geo_feature_matrix.csv
