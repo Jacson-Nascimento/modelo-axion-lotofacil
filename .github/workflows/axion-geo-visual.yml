@@ -46,7 +46,6 @@ jobs:
           for f in $(find geo/data/parts -type f -name 'part_*.csv.gz' | sort); do
             gzip -dc "$f" >> /tmp/axion_geo/binary_matrix.csv
           done
-          sha256sum /tmp/axion_geo/binary_matrix.csv
           python - <<'PY'
           import hashlib
           import pandas as pd
@@ -54,21 +53,34 @@ jobs:
           d=pd.read_csv(p)
           expected=set(range(1,3436))
           actual=set(d.contest.astype(int).tolist())
-          dup=d.loc[d.contest.duplicated(keep=False), 'contest'].astype(int).tolist()
+          dup_ids=sorted(d.loc[d.contest.duplicated(keep=False), 'contest'].astype(int).unique().tolist())
           missing=sorted(expected-actual)
           extra=sorted(actual-expected)
-          print('rows', len(d))
-          print('contest_min', d.contest.min(), 'contest_max', d.contest.max())
-          print('duplicate_contests', dup)
+          print('raw_rows', len(d))
+          print('duplicate_ids', dup_ids)
           print('missing_contests', missing)
           print('extra_contests', extra)
-          print('sha256', hashlib.sha256(open(p,'rb').read()).hexdigest())
-          assert len(d)==3435, len(d)
+          assert dup_ids == [1030, 1031], dup_ids
+          assert missing == [687], missing
+          assert extra == [], extra
+          for contest in dup_ids:
+              g=d[d.contest.eq(contest)]
+              assert len(g.drop_duplicates()) == 1, f'conflicting duplicate rows for {contest}'
+          repair=pd.read_csv('geo/data/repair/contest_0687.csv')
+          assert repair.contest.astype(int).tolist() == [687]
+          d=d.drop_duplicates(subset=['contest'], keep='first')
+          d=pd.concat([d, repair], ignore_index=True).sort_values('contest').reset_index(drop=True)
+          d.to_csv(p, index=False, lineterminator='\r\n')
+          sha=hashlib.sha256(open(p,'rb').read()).hexdigest()
+          print('canonical_rows', len(d))
+          print('canonical_sha256', sha)
+          assert sha == '1b914b6ce9c566c12352d92ba739177ab741a587eaf1be4f64e5de1597768166', sha
+          assert len(d)==3435
           assert list(d.columns[:2])==['contest','date']
           assert list(d.columns[2:])==[f'd{i:02d}' for i in range(1,26)]
-          assert d.contest.tolist()==list(range(1,3436)), 'contest sequence mismatch'
-          assert (d.iloc[:,2:].sum(axis=1)==15).all(), 'row sum mismatch'
-          assert d.iloc[:,2:].isin([0,1]).all().all(), 'non-binary cell found'
+          assert d.contest.astype(int).tolist()==list(range(1,3436))
+          assert (d.iloc[:,2:].sum(axis=1)==15).all()
+          assert d.iloc[:,2:].isin([0,1]).all().all()
           print('matrix_structural_validation=PASS')
           PY
 
