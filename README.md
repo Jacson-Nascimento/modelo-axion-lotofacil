@@ -19,6 +19,10 @@ Projeto experimental de modelagem combinatória, validação fora da amostra e o
 - [Relatórios técnicos e revisões editoriais](docs/reports/README.md)
 - [Procedimento de depósito no Zenodo](docs/ZENODO_DEPOSIT.md)
 
+## Experimentos adicionais
+
+- [Atenção temporal inspirada nas LLMs, 24/10/2026](experiments/sequence_attention/README.md): Transformer pequeno, referências simples, verificação causal e resultados históricos completos. Sem vantagem preditiva confirmada na métrica primária.
+
 ## Nota de versionamento
 
 Os arquivos da versão 1.0 depositados no Zenodo são imutáveis e identificados pelo DOI acima. As revisões editoriais 1.0.1 acrescentam o DOI e corrigem metadados, sem alteração dos resultados, métodos ou conclusões. Novas alterações substantivas deverão ser publicadas como nova versão no Zenodo.

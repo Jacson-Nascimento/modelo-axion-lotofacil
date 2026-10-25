@@ -1,0 +1,55 @@
+{
+  "created_at_utc": "2026-10-25T02:39:02.448273+00:00",
+  "config": {
+    "experiment": "axion-sequence-attention-v1",
+    "historical_only": true,
+    "outer_start": 2000,
+    "outer_block": 300,
+    "context": 32,
+    "d_model": 16,
+    "heads": 2,
+    "layers": 1,
+    "feedforward": 32,
+    "dropout": 0.1,
+    "seeds": [
+      17,
+      43,
+      97
+    ],
+    "validation_size": 256,
+    "epochs": 30,
+    "patience": 5,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "logistic_C": 0.01,
+    "frequency_prior": 100.0,
+    "recent_window": 250,
+    "bootstrap_replicates": 9999,
+    "bootstrap_block": 25,
+    "bootstrap_seed": 20261024,
+    "shuffle_seed": 20261025,
+    "torch_threads": 2
+  },
+  "data_sha256": "a8e29a54957f0d22a3fd204bc3be2c3974407e7d54df24c3255a06d9a530d7b8",
+  "code_sha256": {
+    "core.py": "6f38f65adb902f8f175b2be308b084a224c2e42c45ae157271d0d64351c1839a",
+    "models.py": "83ae833222a6ecc53ef8e89fa7966e2318254137946a55ac393696248039572c",
+    "prepare_data.py": "c248847ae517d680081aa190ce767d71882552fd3786833b2622fc1623f5190b",
+    "run.py": "561f6385384cb547ef67fd71da3ca29c63d1409899c1b5c08c501cea5113b3ba"
+  },
+  "git_commit_at_run": "13657aacd7ac96530d8bc0e6abe0c87428a0259f",
+  "git_dirty_at_manifest": true,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "libraries": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "torch": "2.14.1+cpu"
+  },
+  "evaluation": "historical_exploratory",
+  "source_reconciled_with_caixa": false,
+  "model_promotion": false
+}
