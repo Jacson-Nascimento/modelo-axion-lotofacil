@@ -1,0 +1,30 @@
+{
+  "repository": "Jacson-Nascimento/Jacson-Nascimento",
+  "commit": "db2d1d49855b31748c9fd3012f9775bb349cc586",
+  "path": "lotofacil_axion/data/lotofacil_history.csv",
+  "blob_sha": "5602df7bbe92ce5fa48ea5d49514a8dc07ccdd41",
+  "url": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/blob/db2d1d49855b31748c9fd3012f9775bb349cc586/lotofacil_axion/data/lotofacil_history.csv",
+  "authority": "Snapshot secundário do projeto. Não reconciliado integralmente com a fonte oficial nesta rodada.",
+  "draws": 3812,
+  "first_contest": 1,
+  "last_contest": 3812,
+  "sha256": "8ab0df05d6e24f8f2370c762ba25f43421cbdadc9a92e3e641db274f9c41ad86",
+  "checked_derivative": {
+    "path": "lotofacil_history_checked.csv",
+    "sha256": "a8e29a54957f0d22a3fd204bc3be2c3974407e7d54df24c3255a06d9a530d7b8",
+    "date_corrections": [
+      {
+        "contest": 3490,
+        "old": "2025-08-18",
+        "new": "2025-09-18"
+      }
+    ],
+    "numbers_changed": false,
+    "official_spot_checks": 7,
+    "full_official_reconciliation": false,
+    "same_day_official_records": [
+      3715,
+      3716
+    ]
+  }
+}

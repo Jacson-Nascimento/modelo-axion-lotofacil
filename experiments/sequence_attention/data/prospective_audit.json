@@ -1,0 +1,213 @@
+{
+  "original_repository": "Jacson-Nascimento/Jacson-Nascimento",
+  "snapshot_commit": "db2d1d49855b31748c9fd3012f9775bb349cc586",
+  "registry_summary": {
+    "protocol_version": "axion-prospective-v1",
+    "registry_engine_version": "1.1",
+    "start_contest": 3780,
+    "locked_horizons": [
+      25,
+      50,
+      100,
+      250
+    ],
+    "primary_endpoint": "single_game_hits",
+    "primary_null": "exact convolution of Hypergeometric(25,15,15)",
+    "benchmark_mean_hits": 9,
+    "strategy_results": {},
+    "locked_horizon_reviews": [],
+    "n_evaluated_contests": 0,
+    "next_locked_horizon": 25
+  },
+  "baseline3780": {
+    "axion_prediction_manifest_sha256": "1e708a87fd0aaccee974e8076835c9ed38defece8cafd3001c3d6c6c957528eb",
+    "contest": 3780,
+    "control_salt": "AXION-PROSPECTIVE-CONTROL-v1",
+    "created_after_observing_contest": 3779,
+    "data_last_date": "2026-09-03",
+    "governance": "Games are fixed before the target contest result is available. Past manifests are never rewritten by this script.",
+    "locked_horizons": [
+      25,
+      50,
+      100,
+      250
+    ],
+    "primary_endpoint": "single_game_hits",
+    "protocol_version": "axion-prospective-v1",
+    "strategies": {
+      "axion_top_game": [
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        17,
+        20,
+        21,
+        24,
+        25
+      ],
+      "deterministic_random_control": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        8,
+        9,
+        11,
+        13,
+        16,
+        18,
+        20,
+        23,
+        24,
+        25
+      ],
+      "fixed_pre3436_top15": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        20,
+        22,
+        24,
+        25
+      ],
+      "rolling1000_top15": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        20,
+        21,
+        24,
+        25
+      ]
+    }
+  },
+  "prediction3813": {
+    "model_version": "axion-lotofacil-0.3",
+    "next_contest": 3813,
+    "generated_at_utc": "2026-10-24T22:40:27.349678+00:00",
+    "generated_at_america_araguaina": "2026-10-24T19:40:27.381239-03:00",
+    "last_observed_contest": 3812,
+    "last_observed_date": "2026-10-23",
+    "selected_config": {
+      "name": "blend_w60_lw0.5",
+      "window": 60,
+      "half_life": 30,
+      "prior_strength": 100,
+      "long_weight": 0.5,
+      "pair_weight": 0,
+      "repeat_weight": 0
+    },
+    "top_game": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      10,
+      11,
+      13,
+      15,
+      19,
+      20,
+      23,
+      24,
+      25
+    ],
+    "portfolio": [
+      [
+        1,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11,
+        13,
+        15,
+        19,
+        20,
+        23,
+        24,
+        25
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        11,
+        12,
+        14,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25
+      ]
+    ],
+    "distance_minimum": 5,
+    "universe_vertices_scored": 3268760,
+    "seed": 20260723,
+    "manifest_sha256_without_self_hash": "4237a6070763b1cd5c0068052d67eae7a8b8ca427f3e7dff89da316f3133220b"
+  },
+  "manifest_commit_history": [
+    [
+      {
+        "sha": "68b6c39adb873c939480c090768f844e2573d93c",
+        "author_date": "2026-09-10T05:04:50Z",
+        "committer_date": "2026-09-10T05:04:50Z",
+        "url": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/commit/68b6c39adb873c939480c090768f844e2573d93c"
+      }
+    ],
+    [
+      {
+        "sha": "db2d1d49855b31748c9fd3012f9775bb349cc586",
+        "author_date": "2026-10-24T22:40:27Z",
+        "committer_date": "2026-10-24T22:40:27Z",
+        "url": "https://github.com/Jacson-Nascimento/Jacson-Nascimento/commit/db2d1d49855b31748c9fd3012f9775bb349cc586"
+      }
+    ]
+  ],
+  "interpretation": [
+    "O resumo do registro prospectivo contém zero concursos avaliados, apesar dos manifests operacionais posteriores.",
+    "O manifest 3780 entrou em commit datado de 10/09/2026. Consulta oficial informa alvo3780 em 15/09/2026, compatível com antecedência documental. A primeira publicação efetiva e o horário exato de congelamento não foram comprovados de forma independente.",
+    "O manifest3813 registra geração em 24/10/2026 19h40 de Brasília e último concurso3812.",
+    "As datas de commit são metadados versionados e não prova independente da hora de publicação. Não foi atribuída validade prospectiva só com esses registros.",
+    "Preservados os arquivos antigos; nenhuma linha foi acrescentada retroativamente ao ledger."
+  ],
+  "target3780_official": {
+    "contest": 3780,
+    "date": "15/09/2026",
+    "source_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/3780",
+    "retrieved_at_utc": "2026-10-25T02:39:48.992984+00:00"
+  }
+}
